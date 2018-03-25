@@ -8,6 +8,7 @@
 function formsonTokenize(input) {
   let stack = ""; /* holds the currently accumlating key */
   const keys = []; /* eventual return value */
+  let isWithinKeyBody = false;
   
   // Store if the next character has been marked as being escaped
   // (ie, the character before was a backslash)
