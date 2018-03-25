@@ -111,12 +111,18 @@ document.querySelectorAll("form[data-json]").forEach(form => {
       headers,
     }).then(response => {
       if (response.ok) {
-        return response.json().then(console.log);
+        return response.json().then(json => {
+          const file = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+          const fileURL = URL.createObjectURL(file);
+          location.href = fileURL;
+        });
       } else {
         throw new Error(`Non-ok response to json-form: ${response.statusCode}`);
       }
     }).catch(err => {
-      console.error(err);
+      const file = new Blob([err.toString()], {type: 'text/plain'});
+      const fileURL = URL.createObjectURL(file);
+      location.href = fileURL;
     });
   });
 });
