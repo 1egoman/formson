@@ -1,3 +1,10 @@
+/*************
+ ** FORMSON **
+ *************
+ *
+ * Copyright Ryan Gaus. Distributed under the MIT License
+ */
+
 function formsonTokenize(input) {
   let stack = ""; /* holds the currently accumlating key */
   const keys = []; /* eventual return value */
