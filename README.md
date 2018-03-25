@@ -22,7 +22,7 @@ First, add the formson script to to the bottom of the body within your html page
 <body>
 
   <!-- formson script -->
-  <script src="https://formson.surge.sh/formson.min.js"></script>
+  <script src="https://formson-master.surge.sh/formson.min.js"></script>
 </body>
 ```
 
