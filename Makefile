@@ -5,6 +5,7 @@ CURRENT_BRANCH = $(shell git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.
 
 UGLIFY = node_modules/.bin/uglifyjs
 BABEL = node_modules/.bin/babel
+SURGE = node_modules/.bin/surge
 
 build: output transpile minify 
 
@@ -29,7 +30,7 @@ publish:
 	echo '</ul>' >> output/index.html
 	echo '</body></html>' >> output/index.html
 
-	surge ./output "formson-$(HASH).surge.sh"
+	$(SURGE) ./output "formson-$(HASH).surge.sh"
 
 	rm -rf output/index.html
 	echo '<html><body>' >> output/index.html
@@ -41,4 +42,4 @@ publish:
 	echo '</ul>' >> output/index.html
 	echo '</body></html>' >> output/index.html
 
-	surge ./output "formson-$(CURRENT_BRANCH).surge.sh"
+	$(SURGE) ./output "formson-$(CURRENT_BRANCH).surge.sh"

@@ -1,0 +1,29 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.9
+    steps:
+      - checkout
+      - restore_cache:
+          key: node_modules-{{checksum "./package.json"}}
+      - run:
+          name: "Print out versions"
+          command: |
+            echo "node -v = $(node -v)"
+            echo "npm -v = $(npm -v)"
+            echo "yarn --version = $(yarn --version)"
+      - run:
+          name: "Install dependencies"
+          command: yarn
+      - run:
+          name: "Build"
+          command: make build
+      - run:
+          name: "Publish"
+          command: make publish
+      - save_cache:
+          key: node_modules-{{checksum "./package.json"}}
+          paths:
+            - "./node_modules"
